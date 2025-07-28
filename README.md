@@ -1,35 +1,32 @@
-🌐 My Personal Portfolio
-This is a responsive, single-page portfolio website built using React and React Bootstrap. It showcases my projects, skills, and certificates with a clean UI and smooth user experience.
+# 🌐 My Personal Portfolio
 
-🚀 Tech Stack
-React.js
+This is a **responsive, single-page portfolio website** built using **React** and **React Bootstrap**. It showcases my **projects**, **skills**, and **certificates** with a clean UI and smooth user experience.
 
-React-Bootstrap
+## 🚀 Tech Stack
 
-JavaScript (ES6+)
+- **React.js**
+- **React-Bootstrap**
+- **JavaScript (ES6+)**
+- **HTML5 & CSS3**
+- **Animate.css**
+- **React-on-Screen** (Visibility Tracking)
 
-HTML5 & CSS3
+## ✨ Features
 
-Animate.css
+- 🧩 Project showcase with live links
+- 🛠️ Skillset and tech stack section
+- 📜 Certificates display
+- 📱 Mobile-first responsive design
+- 💫 Smooth transitions and animations
 
-React on Screen (Visibility Tracking)
+## 🛠️ Getting Started
 
-✨ Features
-Project showcase with links
+### 1. Clone the Repository
 
-Skillset and tech stack sections
+```bash
+git clone https://github.com/your-username/your-repo-name.git
+cd your-repo-name
 
-Certificates display
-
-Mobile-first responsive design
-
-Smooth transitions and animations
-
-🛠️ Getting Started
-1. Clone the Repository
-   ``bash
-   git clone https://github.com/your-username/your-repo-name.git
-   cd your-repo-name
 
 Install Dependencies
 npm install
