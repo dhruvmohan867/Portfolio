@@ -58,7 +58,7 @@ export const Projects = () => {
                           {
                             projects.map((project, index) => {
                               return (
-                                <Col key={index} size={12} sm={6} md={4}>
+                               <Col key={index} xs={12} sm={6} md={4} className="d-flex">
                                   <ProjectCard {...project} />
                                   <div className="project-link-container">
                                     <a href={project.url} target="_blank" rel="noopener noreferrer" className="project-link-button">Visit Project</a>
