@@ -20,13 +20,13 @@ export const Projects = () => {
     {
       title: "Portfolio Website",
       description: "A responsive and visually appealing personal portfolio built with React, showcasing projects and skills with smooth UI interactions.",
-      imgUrl: projImg3,
+      imgUrl: "https://www.nda.ac.uk/wp-content/uploads/10-10-portfolio-01.jpg",
       url: "https://portfolio-dhruvs-projects-2b3759ed.vercel.app/"
     },
     {
       title: "Ecommerce Website",
       description: "A modern e-commerce platform built with React.js, featuring authentication, product listings, and reusable UI components. Responsive and backend-ready",
-      imgUrl: projImg2,
+      imgUrl: "https://ecommerce-website-frontend3.onrender.com/static/media/Header.0b5252c82ac77b9e7a76.png",
       url: "https://ecommerce-website-frontend3.onrender.com/"
     },
   ];
