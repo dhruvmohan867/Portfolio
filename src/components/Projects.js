@@ -18,16 +18,16 @@ export const Projects = () => {
       url: "https://resort-1.vercel.app/"
     },
     {
-      title: "Gemini_clone",
-      description: "I created a Gemini clone using Node.js. This project highlights my proficiency in server-side development and my ability to replicate and enhance existing platforms with modern technologies",
+      title: "Portfolio Website",
+      description: "A responsive and visually appealing personal portfolio built with React, showcasing projects and skills with smooth UI interactions.",
       imgUrl: projImg3,
-      url: "https://gemini-clone-tawny-ten.vercel.app/"
+      url: "https://portfolio-dhruvs-projects-2b3759ed.vercel.app/"
     },
     {
-      title: "Simple web page ",
-      description: "Created a simple web page using HTML and CSS to highlight proficiency in web design. The page showcases clean, responsive design and demonstrates fundamental skills in structuring and styling content",
+      title: "Ecommerce Website",
+      description: "A modern e-commerce platform built with React.js, featuring authentication, product listings, and reusable UI components. Responsive and backend-ready",
       imgUrl: projImg2,
-      url: "https://project-1-sigma-one.vercel.app/"
+      url: "https://ecommerce-website-frontend3.onrender.com/"
     },
   ];
 
