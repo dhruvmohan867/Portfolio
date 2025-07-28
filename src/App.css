@@ -14,6 +14,9 @@
 	src: url('./assets/font/CentraNo2-Book.ttf');
 	font-weight: 400;
 }
+.proj-txtx {
+  min-height: 100px; /* Adjust as needed */
+}
 
 /************ Default Css ************/
 * {
