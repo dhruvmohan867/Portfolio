@@ -7,6 +7,8 @@ import 'animate.css';
 import certificateImg1 from "../assets/img/download.png";
 import certificateImg2 from "../assets/img/unnamed.jpg";
 import TrackVisibility from 'react-on-screen';
+import { FaHtml5, FaCss3Alt, FaJs, FaReact, FaNodeJs, FaDatabase, FaCode } from 'react-icons/fa';
+import { SiExpress, SiMongodb } from 'react-icons/si';
 
 export const Projects = () => {
 
@@ -31,6 +33,43 @@ export const Projects = () => {
     },
   ];
 
+  // Skill categories with icons and details
+  const skillCategories = [
+    {
+      title: "Frontend Development",
+      icon: <FaHtml5 className="skill-category-icon" />,
+      skills: [
+        { name: "HTML", level: 95, icon: <FaHtml5 /> },
+        { name: "CSS", level: 90, icon: <FaCss3Alt /> },
+        { name: "JavaScript", level: 85, icon: <FaJs /> },
+        { name: "React", level: 90, icon: <FaReact /> },
+        { name: "React Router", level: 85, icon: <FaCode /> }
+      ]
+    },
+    {
+      title: "Backend Development",
+      icon: <FaNodeJs className="skill-category-icon" />,
+      skills: [
+        { name: "Node.js", level: 80, icon: <FaNodeJs /> },
+        { name: "Express", level: 75, icon: <SiExpress /> },
+        { name: "MongoDB", level: 70, icon: <SiMongodb /> },
+        { name: "Database Management", level: 75, icon: <FaDatabase /> },
+        { name: "APIs", level: 80, icon: <FaCode /> }
+      ]
+    },
+    {
+      title: "Learning Goals",
+      icon: <FaCode className="skill-category-icon" />,
+      skills: [
+        { name: "Fullstack Proficiency", level: 70 },
+        { name: "Advanced React Patterns", level: 65 },
+        { name: "Performance Optimization", level: 60 },
+        { name: "Cloud Deployment", level: 65 },
+        { name: "Testing Strategies", level: 60 }
+      ]
+    }
+  ];
+
   return (
     <section className="project" id="projects">
       <Container>
@@ -46,7 +85,7 @@ export const Projects = () => {
                         <Nav.Link eventKey="first">Projects</Nav.Link>
                       </Nav.Item>
                       <Nav.Item>
-                        <Nav.Link eventKey="second">My Current Skills</Nav.Link>
+                        <Nav.Link eventKey="second">My Skills</Nav.Link>
                       </Nav.Item>
                       <Nav.Item>
                         <Nav.Link eventKey="third">Certificates</Nav.Link>
@@ -58,12 +97,11 @@ export const Projects = () => {
                           {
                             projects.map((project, index) => {
                               return (
-                               <Col key={index} xs={12} sm={6} md={4} className="d-flex">
+                                <Col key={index} xs={12} sm={6} md={4} className="d-flex">
                                   <ProjectCard {...project} />
                                   <div className="project-link-container">
                                     <a href={project.url} target="_blank" rel="noopener noreferrer" className="project-link-button">Visit Project</a>
                                   </div>
-
                                 </Col>
                               )
                             })
@@ -71,56 +109,85 @@ export const Projects = () => {
                         </Row>
                       </Tab.Pane>
                       <Tab.Pane eventKey="second">
-  <section id="skills" className="centered-content">
-    <h2>My Current Skills</h2>
-    <p>
-      I have a strong foundation in frontend development, with expertise in creating visually appealing and responsive web pages using HTML, CSS, and JavaScript. Currently, I am expanding my skill set by diving into backend development, focusing on server-side technologies and database management.
-    </p>
-    <h3>Frontend Development</h3>
-    <ul>
-      <li>HTML, CSS, JavaScript</li>
-      <li>Responsive Design</li>
-      <li>React</li>
-      <li>React Router</li>
-    </ul>
-    <h3>Backend Development</h3>
-    <ul>
-      <li>Node.js</li>
-      <li>Express</li>
-      <li>Database Management</li>
-      <li>APIs</li>
-    </ul>
-    <h3>Goals</h3>
-    <p>
-      My goal is to become proficient in both frontend and backend development, enabling me to create comprehensive and dynamic web solutions.
-    </p>
-  </section>
-</Tab.Pane>
+                        <div className="skills-container">
+                          <div className="skills-header text-center mb-5">
+                            <h2 className="mb-3">My Technical Skills</h2>
+                            <p className="lead">
+                              I have a strong foundation in frontend development with expertise in creating responsive web applications. 
+                              Currently expanding my skills in backend technologies to become a fullstack developer.
+                            </p>
+                          </div>
+                          
+                          <Row className="g-4">
+                            {skillCategories.map((category, catIndex) => (
+                              <Col md={4} key={catIndex}>
+                                <div className="skill-category-card">
+                                  <div className="category-header">
+                                    <div className="category-icon">
+                                      {category.icon}
+                                    </div>
+                                    <h3>{category.title}</h3>
+                                  </div>
+                                  <div className="skills-list">
+                                    {category.skills.map((skill, skillIndex) => (
+                                      <div className="skill-item" key={skillIndex}>
+                                        <div className="skill-info">
+                                          <div className="skill-icon">
+                                            {skill.icon || <FaCode />}
+                                          </div>
+                                          <span className="skill-name">{skill.name}</span>
+                                        </div>
+                                        <div className="progress-container">
+                                          <div 
+                                            className="progress-bar" 
+                                            style={{ width: `${skill.level}%` }}
+                                          >
+                                            <span className="progress-text">{skill.level}%</span>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    ))}
+                                  </div>
+                                </div>
+                              </Col>
+                            ))}
+                          </Row>
+                          
+                          <div className="skills-summary mt-5">
+                            <h3 className="text-center mb-4">Development Goals</h3>
+                            <p className="text-center">
+                              My goal is to become proficient in both frontend and backend development, enabling me to create comprehensive 
+                              and dynamic web solutions. I'm focused on mastering modern architectures, performance optimization, 
+                              and building scalable applications.
+                            </p>
+                          </div>
+                        </div>
+                      </Tab.Pane>
                       <Tab.Pane eventKey="third">
-                      <section id="certificates">
-                        <h2 style={{ color: '#f5f5f5' }}>Certificates</h2>
-                        <ul className="certificates-list">
-                          <li className="certificate-item">
-                            <img src={certificateImg1} alt="Certificate 3" className="certificate-img" />
-                            <div className="certificate-info">
-                              <a href="https://drive.google.com/file/d/1sVRcUMg-A3O6-MrEoJyPOohJwhqwAY9N/view?pli=1" target="_blank" rel="noopener noreferrer">
-                                Overview of Machine learning
-                              </a>
-                              <p>I completed a workshop on AI/ML at IIT Kanpur, where I gained valuable insights into the fundamentals of artificial intelligence and machine learning. The workshop provided hands-on experience with various machine learning algorithms and techniques, enhancing my understanding of how to apply these concepts to real-world problems. This experience has significantly broadened my knowledge and skills in the AI/ML domain.</p>
-                            </div>
-                          </li>
-                          <li className="certificate-item">
-                            <img src={certificateImg2} alt="Certificate 1" className="certificate-img" />
-                            <div className="certificate-info">
-                              <a href="https://drive.google.com/file/d/1lF57GAt60A7tVidYjfQ9BO_tvpCeMRbH/view" target="_blank" rel="noopener noreferrer">
-                                Internal Hackathon
-                              </a>
-                              <p>I participated in the Internal Hackathon of Smart Indian Hackathon, where I successfully secured 3rd position. This experience allowed me to collaborate with a talented team, solve complex problems, and innovate under pressure. Our project was well-received for its creativity and technical execution, highlighting my skills in problem-solving and teamwork.</p>
-                            </div>
-                          </li>
-                        </ul>
-                      </section>
-                    </Tab.Pane>
+                        <section id="certificates">
+                          <h2 style={{ color: '#f5f5f5' }}>Certificates</h2>
+                          <ul className="certificates-list">
+                            <li className="certificate-item">
+                              <img src={certificateImg1} alt="Certificate 3" className="certificate-img" />
+                              <div className="certificate-info">
+                                <a href="https://drive.google.com/file/d/1sVRcUMg-A3O6-MrEoJyPOohJwhqwAY9N/view?pli=1" target="_blank" rel="noopener noreferrer">
+                                  Overview of Machine learning
+                                </a>
+                                <p>I completed a workshop on AI/ML at IIT Kanpur, where I gained valuable insights into the fundamentals of artificial intelligence and machine learning. The workshop provided hands-on experience with various machine learning algorithms and techniques, enhancing my understanding of how to apply these concepts to real-world problems. This experience has significantly broadened my knowledge and skills in the AI/ML domain.</p>
+                              </div>
+                            </li>
+                            <li className="certificate-item">
+                              <img src={certificateImg2} alt="Certificate 1" className="certificate-img" />
+                              <div className="certificate-info">
+                                <a href="https://drive.google.com/file/d/1lF57GAt60A7tVidYjfQ9BO_tvpCeMRbH/view" target="_blank" rel="noopener noreferrer">
+                                  Internal Hackathon
+                                </a>
+                                <p>I participated in the Internal Hackathon of Smart Indian Hackathon, where I successfully secured 3rd position. This experience allowed me to collaborate with a talented team, solve complex problems, and innovate under pressure. Our project was well-received for its creativity and technical execution, highlighting my skills in problem-solving and teamwork.</p>
+                              </div>
+                            </li>
+                          </ul>
+                        </section>
+                      </Tab.Pane>
                     </Tab.Content>
                   </Tab.Container>
                 </div>}
@@ -128,7 +195,125 @@ export const Projects = () => {
           </Col>
         </Row>
       </Container>
-      {/* <img className="background-image-right" src={colorSharp2} alt="Background"></img> */}
+      
+      <style jsx>{`
+        .skills-container {
+          padding: 30px;
+          background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+          border-radius: 15px;
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .skill-category-card {
+          background: rgba(255, 255, 255, 0.05);
+          border-radius: 12px;
+          padding: 25px;
+          height: 100%;
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+          border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .skill-category-card:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+          background: rgba(255, 255, 255, 0.08);
+        }
+        
+        .category-header {
+          display: flex;
+          align-items: center;
+          margin-bottom: 20px;
+          padding-bottom: 15px;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .category-icon {
+          background: linear-gradient(45deg, #0ea5e9, #0d9488);
+          width: 50px;
+          height: 50px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-right: 15px;
+        }
+        
+        .skill-category-icon {
+          font-size: 24px;
+          color: white;
+        }
+        
+        .skills-list {
+          display: flex;
+          flex-direction: column;
+          gap: 15px;
+        }
+        
+        .skill-item {
+          display: flex;
+          flex-direction: column;
+        }
+        
+        .skill-info {
+          display: flex;
+          align-items: center;
+          margin-bottom: 8px;
+        }
+        
+        .skill-icon {
+          margin-right: 10px;
+          color: #0ea5e9;
+          font-size: 18px;
+        }
+        
+        .skill-name {
+          color: #f8fafc;
+          font-weight: 500;
+        }
+        
+        .progress-container {
+          width: 100%;
+          height: 10px;
+          background: rgba(255, 255, 255, 0.1);
+          border-radius: 5px;
+          overflow: hidden;
+        }
+        
+        .progress-bar {
+          height: 100%;
+          background: linear-gradient(90deg, #0ea5e9, #0d9488);
+          border-radius: 5px;
+          position: relative;
+          transition: width 1s ease-out;
+        }
+        
+        .progress-text {
+          position: absolute;
+          right: 5px;
+          top: -25px;
+          font-size: 12px;
+          color: #f8fafc;
+          font-weight: 500;
+        }
+        
+        .skills-summary {
+          background: rgba(255, 255, 255, 0.05);
+          border-radius: 12px;
+          padding: 25px;
+          border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .skills-summary p {
+          color: #cbd5e1;
+          line-height: 1.7;
+        }
+        
+        @media (max-width: 768px) {
+          .skill-category-card {
+            margin-bottom: 20px;
+          }
+        }
+      `}</style>
     </section>
   )
 }
