@@ -170,7 +170,7 @@ export const Projects = () => {
                             <li className="certificate-item">
                               <img src={certificateImg1} alt="Certificate 3" className="certificate-img" />
                               <div className="certificate-info">
-                                <a href="https://drive.google.com/file/d/1sVRcUMg-A3O6-MrEoJyPOohJwhqwAY9N/view?pli=1" target="_blank" rel="noopener noreferrer">
+                                <a href="https://drive.google.com/file/d/12ycF1dyFke4F-nasUxnsx16PBkfTvmPu/view?usp=sharing" target="_blank" rel="noopener noreferrer">
                                   Overview of Machine learning
                                 </a>
                                 <p>I completed a workshop on AI/ML at IIT Kanpur, where I gained valuable insights into the fundamentals of artificial intelligence and machine learning. The workshop provided hands-on experience with various machine learning algorithms and techniques, enhancing my understanding of how to apply these concepts to real-world problems. This experience has significantly broadened my knowledge and skills in the AI/ML domain.</p>
