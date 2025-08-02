@@ -179,7 +179,7 @@ export const Projects = () => {
                             <li className="certificate-item">
                               <img src={certificateImg2} alt="Certificate 1" className="certificate-img" />
                               <div className="certificate-info">
-                                <a href="https://drive.google.com/file/d/1lF57GAt60A7tVidYjfQ9BO_tvpCeMRbH/view" target="_blank" rel="noopener noreferrer">
+                                <a href="https://drive.google.com/file/d/1dsYbx0205wW-FpQUnp_xMt7ujYp5irQK/view?usp=sharing" target="_blank" rel="noopener noreferrer">
                                   Internal Hackathon
                                 </a>
                                 <p>I participated in the Internal Hackathon of Smart Indian Hackathon, where I successfully secured 3rd position. This experience allowed me to collaborate with a talented team, solve complex problems, and innovate under pressure. Our project was well-received for its creativity and technical execution, highlighting my skills in problem-solving and teamwork.</p>
