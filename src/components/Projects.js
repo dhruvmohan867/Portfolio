@@ -28,7 +28,7 @@ export const Projects = () => {
     {
       title: "Ecommerce Website",
       description: "A modern e-commerce platform built with React.js, featuring authentication, product listings, and reusable UI components. Responsive and backend-ready",
-      imgUrl: "https://ecommerce-website-frontend3.onrender.com/static/media/Header.0b5252c82ac77b9e7a76.png",
+      imgUrl: "https://ecommerce-website-frontend3.onrender.com/Pogo.webp",
       url: "https://ecommerce-website-frontend3.onrender.com/"
     },
   ];
