@@ -1,7 +1,8 @@
 // src/components/ProjectCard.js
 import React from "react";
 import githubLogo from "../assets/img/github.svg";
-import renderLogo from "../assets/img/render.svg";
+import navIcon2 from '../assets/img/nav-icon2 (2).svg';
+
 
 export const ProjectCard = ({ title, description, imgUrl, github, demo }) => {
   return (
@@ -25,7 +26,7 @@ export const ProjectCard = ({ title, description, imgUrl, github, demo }) => {
               rel="noopener noreferrer"
               aria-label={`${title} GitHub repository`}
             >
-              <img src={githubLogo} alt="GitHub" />
+              <img src={navIcon2} alt="GitHub" />
               <span>GitHub</span>
             </a>
           )}
@@ -38,7 +39,7 @@ export const ProjectCard = ({ title, description, imgUrl, github, demo }) => {
               rel="noopener noreferrer"
               aria-label={`${title} Live demo`}
             >
-              <img src={renderLogo} alt="Live demo" />
+              <img src={githubLogo} alt="Live demo" />
               <span>Live Demo</span>
             </a>
           )}
