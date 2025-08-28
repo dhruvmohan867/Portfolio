@@ -16,7 +16,7 @@ export const Projects = () => {
     {
       title: "Video-Sharing Backend",
       description: "A scalable backend for a video-sharing app using Node.js, Express.js, MongoDB, Mongoose, JWT, and Cloudinary",
-      imgUrl: projImg4,
+      imgUrl: proImg4,
       url: "https://github.com/dhruvmohan867/Backend"
     },
     {
