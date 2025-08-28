@@ -1,14 +1,15 @@
-import React from 'react';
+import React from "react";
 
 export const ProjectCard = ({ title, description, imgUrl }) => {
   return (
-    <div className="proj-imgbx card-equal-height">
-      <img src={imgUrl} alt={title} className="project-image" />
-      <div className="proj-txtx">
-        <h4>{title}</h4>
-        <span>{description}</span>
+    <div className="project-card">
+      <div className="project-image-wrapper">
+        <img src={imgUrl} alt={title} className="project-image" />
+      </div>
+      <div className="project-content">
+        <h4 className="project-title">{title}</h4>
+        <p className="project-description">{description}</p>
       </div>
     </div>
   );
 };
-
