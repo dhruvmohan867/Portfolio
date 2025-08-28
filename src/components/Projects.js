@@ -11,6 +11,7 @@ import { FaHtml5, FaCss3Alt, FaJs, FaReact, FaNodeJs, FaDatabase, FaCode } from 
 import { SiExpress, SiMongodb } from 'react-icons/si';
 import proImg4 from "../assets/img/ChatGPT Image Aug 28, 2025, 10_46_38 PM.png";
 import githubLogo from "../assets/img/github.svg";
+import navIcon2 from '../assets/img/nav-icon2 (2).svg';
 
 export const Projects = () => {
 
@@ -103,7 +104,7 @@ export const Projects = () => {
                                   <ProjectCard {...project} />
                                   <div className="project-link-container">
                                    <a href={project.url} target="_blank" rel="noopener noreferrer" className="project-link-button">
-                                   <img src={githubLogo} alt="GitHub" style={{ width: "20px", marginRight: "8px" }} />GitHub </a>
+                                   <img src={navIcon2} alt="GitHub" style={{ width: "20px", marginRight: "8px" }} />GitHub </a>
                                     <a href={project.url} target="_blank" rel="noopener noreferrer"className="project-link-button" >
                                     <img src={githubLogo} alt="Render" style={{ width: "20px", marginRight: "8px" }} /> Live Demo</a>
                                   </div>
