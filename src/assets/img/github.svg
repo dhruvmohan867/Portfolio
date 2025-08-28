@@ -1,1 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256" aria-label="Render (placeholder)">
+
+  <rect x="16" y="16" width="224" height="224" rx="32" ry="32" fill="#3B82F6"/>
+  
+  <path fill="#FFFFFF"
+        d="M88 72h68c30 0 50 18 50 44c0 20-11 35-29 41l29 27v0
+           H176l-32-30h-28v30H88V72zm88 44c0-12-9-20-23-20h-41v40h41
+           c14 0 23-8 23-20z"/>
+</svg>
 
