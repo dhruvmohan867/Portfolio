@@ -1,35 +1,34 @@
 import React from 'react';
-import { Code2, Database, Palette, Trophy, ChevronRight } from 'lucide-react';
 
 export const Skills = () => {
   const skillCategories = [
     {
       title: "Web Development",
       percentage: 95,
-      icon: <Code2 className="w-8 h-8" />,
+      icon: "💻",
       skills: ["React", "Node.js", "Express.js", "HTML/CSS", "JavaScript", "MongoDB"],
-      color: "from-pink-500 to-purple-600"
+      color: "linear-gradient(135deg, #ec4899, #9333ea)"
     },
     {
       title: "Data Structures & Algorithms",
       percentage: 80,
-      icon: <Database className="w-8 h-8" />,
+      icon: "🗄️",
       skills: ["C++", "Java", "SQL", "Problem Solving", "LeetCode 500+"],
-      color: "from-purple-500 to-indigo-600"
+      color: "linear-gradient(135deg, #a855f7, #4f46e5)"
     },
     {
       title: "UI/UX Design",
       percentage: 90,
-      icon: <Palette className="w-8 h-8" />,
+      icon: "🎨",
       skills: ["Bootstrap", "Tailwind CSS", "Responsive Design", "User Experience"],
-      color: "from-indigo-500 to-pink-600"
+      color: "linear-gradient(135deg, #6366f1, #ec4899)"
     },
     {
       title: "Competitive Programming",
       percentage: 85,
-      icon: <Trophy className="w-8 h-8" />,
+      icon: "🏆",
       skills: ["CodeChef", "Codeforces", "Algorithm Design", "Optimization"],
-      color: "from-pink-600 to-purple-500"
+      color: "linear-gradient(135deg, #db2777, #a855f7)"
     }
   ];
 
@@ -70,7 +69,10 @@ export const Skills = () => {
               className="group bg-black/40 backdrop-blur-lg rounded-2xl p-8 border border-white/10 hover:border-white/30 transition-all duration-300 hover:transform hover:scale-105"
             >
               <div className="flex items-center mb-6">
-                <div className={`p-4 rounded-xl bg-gradient-to-r ${category.color} text-white mr-4 group-hover:scale-110 transition-transform duration-300`}>
+                <div 
+                  className="p-4 rounded-xl text-white mr-4 group-hover:scale-110 transition-transform duration-300 flex items-center justify-center text-2xl"
+                  style={{ background: category.color }}
+                >
                   {category.icon}
                 </div>
                 <div className="flex-1">
@@ -78,8 +80,11 @@ export const Skills = () => {
                   <div className="flex items-center">
                     <div className="flex-1 bg-gray-700 rounded-full h-3 mr-3 overflow-hidden">
                       <div 
-                        className={`h-full bg-gradient-to-r ${category.color} rounded-full transition-all duration-1000 ease-out`}
-                        style={{ width: `${category.percentage}%` }}
+                        className="h-full rounded-full transition-all duration-1000 ease-out"
+                        style={{ 
+                          width: `${category.percentage}%`,
+                          background: category.color
+                        }}
                       ></div>
                     </div>
                     <span className="text-white font-semibold text-sm">{category.percentage}%</span>
@@ -90,7 +95,7 @@ export const Skills = () => {
               <div className="space-y-2">
                 {category.skills.map((skill, skillIndex) => (
                   <div key={skillIndex} className="flex items-center text-gray-300 group-hover:text-white transition-colors">
-                    <ChevronRight className="w-4 h-4 mr-2 text-pink-400" />
+                    <span className="w-4 h-4 mr-2 text-pink-400 flex items-center justify-center">▶</span>
                     <span className="text-sm">{skill}</span>
                   </div>
                 ))}
