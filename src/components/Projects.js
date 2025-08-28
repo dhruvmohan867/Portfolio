@@ -9,14 +9,14 @@ import certificateImg2 from "../assets/img/unnamed.jpg";
 import TrackVisibility from 'react-on-screen';
 import { FaHtml5, FaCss3Alt, FaJs, FaReact, FaNodeJs, FaDatabase, FaCode } from 'react-icons/fa';
 import { SiExpress, SiMongodb } from 'react-icons/si';
-
+import proImg4 from "../assets/img/ChatGPT Image Aug 28, 2025, 10_46_38 PM.png";
 export const Projects = () => {
 
   const projects = [
     {
       title: "Video-Sharing Backend",
       description: "A scalable backend for a video-sharing app using Node.js, Express.js, MongoDB, Mongoose, JWT, and Cloudinary",
-      imgUrl: projImg1,
+      imgUrl: projImg4,
       url: "https://github.com/dhruvmohan867/Backend"
     },
     {
