@@ -51,7 +51,7 @@ export const NavBar = () => {
             <span className="navbar-text">
               <div className="social-icon">
                 <a href="https://www.linkedin.com/in/dhruv-mohan-shukla-4a385b254/"><img src={navIcon1} alt="" /></a>
-                <a href="https://x.com/DhruvMohan93135"><img src={navIcon2} alt="" width="16" height="16" viewBox="0 0 16 16" fill="none"   /></a>
+                <a href="https://github.com/dhruvmohan867"><img src={navIcon2} alt="" width="16" height="16" viewBox="0 0 16 16" fill="none"   /></a>
                 <a href="https://leetcode.com/u/Dhruv_2_1234/"><img src={navIcon3} alt="" /></a>
               </div>
               <a href="https://www.linkedin.com/in/dhruv-mohan-shukla-4a385b254/">
