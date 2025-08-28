@@ -20,19 +20,22 @@ export const Projects = () => {
       title: "Video-Sharing Backend",
       description: "A scalable backend for a video-sharing app using Node.js, Express.js, MongoDB, Mongoose, JWT, and Cloudinary",
       imgUrl: proImg4,
-      url: "https://github.com/dhruvmohan867/Backend"
+      github: "https://github.com/dhruvmohan867/Backend",
+      demo: null
     },
     {
       title: "Rosort Hotel",
       description: "Responsive resort booking web app that lets users browse properties, check availability, and complete reservations through a polished, mobile-first UI",
       imgUrl: projImg1,
-      url: "https://resort-1.vercel.app/"
+      github: "https://github.com/dhruvmohan867/Resort_1",
+      demo: "https://resort-1.vercel.app/"
     },
     {
       title: "Ecommerce Website",
       description: "A modern e-commerce platform built with React.js, featuring authentication, product listings, and reusable UI components. Responsive and backend-ready",
       imgUrl: "https://ecommerce-website-frontend3.onrender.com/Pogo.webp",
-      url: "https://ecommerce-website-frontend3.onrender.com/"
+       github: "https://github.com/dhruvmohan867/Ecommerce-Website", // add if available
+      demo: "https://ecommerce-website-frontend3.onrender.com/"
     },
   ];
 
@@ -97,21 +100,11 @@ export const Projects = () => {
                     <Tab.Content id="slideInUp" className="isVisible" >
                       <Tab.Pane eventKey="first">
                         <Row>
-                          {
-                            projects.map((project, index) => {
-                              return (
-                                <Col key={index} xs={12} sm={6} md={4} className="d-flex">
-                                  <ProjectCard {...project} />
-                                  <div className="project-link-container">
-                                   <a href={project.url} target="_blank" rel="noopener noreferrer" className="project-link-button">
-                                   <img src={navIcon2} alt="GitHub" style={{ width: "20px", marginRight: "8px" }} />GitHub </a>
-                                    <a href={project.url} target="_blank" rel="noopener noreferrer"className="project-link-button" >
-                                    <img src={githubLogo} alt="Render" style={{ width: "20px", marginRight: "8px" }} /> Live Demo</a>
-                                  </div>
-                                </Col>
-                              )
-                            })
-                          }
+                              {projects.map((project, index) => (
+                                 <Col key={index} xs={12} sm={6} md={4} className="d-flex">
+                                <ProjectCard {...project} />
+                                  </Col>
+                                  ))}
                         </Row>
                       </Tab.Pane>
                       <Tab.Pane eventKey="second">
