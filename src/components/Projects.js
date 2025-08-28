@@ -14,10 +14,10 @@ export const Projects = () => {
 
   const projects = [
     {
-      title: "Resort_booking",
-      description: "I developed a resort booking application using React and React Router. This project demonstrates my skills in building dynamic, multi-page user interfaces with seamless navigation and responsive design.",
+      title: "Video-Sharing Backend",
+      description: "A scalable backend for a video-sharing app using Node.js, Express.js, MongoDB, Mongoose, JWT, and Cloudinary",
       imgUrl: projImg1,
-      url: "https://resort-1.vercel.app/"
+      url: "https://github.com/dhruvmohan867/Backend"
     },
     {
       title: "Portfolio Website",
