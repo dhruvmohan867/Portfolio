@@ -20,10 +20,10 @@ export const Projects = () => {
       url: "https://github.com/dhruvmohan867/Backend"
     },
     {
-      title: "Portfolio Website",
-      description: "A responsive and visually appealing personal portfolio built with React, showcasing projects and skills with smooth UI interactions.",
-      imgUrl: "https://www.nda.ac.uk/wp-content/uploads/10-10-portfolio-01.jpg",
-      url: "https://portfolio-dhruvs-projects-2b3759ed.vercel.app/"
+      title: "Rosort Hotel",
+      description: "Responsive resort booking web app that lets users browse properties, check availability, and complete reservations through a polished, mobile-first UI",
+      imgUrl: projImg1,
+      url: "https://resort-1.vercel.app/"
     },
     {
       title: "Ecommerce Website",
