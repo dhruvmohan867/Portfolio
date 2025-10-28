@@ -26,7 +26,7 @@ export const Projects = () => {
     {
       title: "Alpha-Predict",
       description: "A full-stack web application that fetches real-time stock data, stores it in a PostgreSQL database, and uses machine learning to predict next-day closing prices. Built with FastAPI, React, and scikit-learn",
-      imgUrl: projImg1,
+      imgUrl: "/Screenshot 2025-10-21 232937.png",
       github: "https://github.com/dhruvmohan867/stock-predictor",
       demo: "https://stock-predictor-five-opal.vercel.app/"
     },
