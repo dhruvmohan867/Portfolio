@@ -24,11 +24,11 @@ export const Projects = () => {
       demo: null
     },
     {
-      title: "Rosort Hotel",
-      description: "Responsive resort booking web app that lets users browse properties, check availability, and complete reservations through a polished, mobile-first UI",
+      title: "Alpha-Predict",
+      description: "A full-stack web application that fetches real-time stock data, stores it in a PostgreSQL database, and uses machine learning to predict next-day closing prices. Built with FastAPI, React, and scikit-learn",
       imgUrl: projImg1,
-      github: "https://github.com/dhruvmohan867/Resort_1",
-      demo: "https://resort-1.vercel.app/"
+      github: "https://github.com/dhruvmohan867/stock-predictor",
+      demo: "https://stock-predictor-five-opal.vercel.app/"
     },
     {
       title: "Ecommerce Website",
