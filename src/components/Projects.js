@@ -12,9 +12,10 @@ import { SiExpress, SiMongodb } from 'react-icons/si';
 import proImg4 from "../assets/img/ChatGPT Image Aug 28, 2025, 10_46_38 PM.png";
 import githubLogo from "../assets/img/github.svg";
 import navIcon2 from '../assets/img/nav-icon2 (2).svg';
+import React, { useMemo, useState } from "react"; // add
+import { motion } from "framer-motion"; // add
 
 export const Projects = () => {
-
   const projects = [
     {
       title: "Video-Sharing Backend",
@@ -76,6 +77,39 @@ export const Projects = () => {
     }
   ];
 
+  // add: state + derived data for innovative skills UI
+  const categories = useMemo(
+    () => ['All', ...skillCategories.map(c => c.title)],
+    [skillCategories]
+  );
+  const allSkills = useMemo(
+    () => skillCategories.flatMap(c =>
+      (c.skills || []).map(s => ({ ...s, category: c.title }))
+    ),
+    [skillCategories]
+  );
+  const [selectedCategory, setSelectedCategory] = useState('All');
+  const [minLevel, setMinLevel] = useState(0);
+
+  const filteredSkills = useMemo(() => {
+    return allSkills
+      .filter(s =>
+        (selectedCategory === 'All' || s.category === selectedCategory) &&
+        (typeof s.level === 'number' ? s.level >= minLevel : true)
+      )
+      .sort((a, b) => (b.level ?? 0) - (a.level ?? 0));
+  }, [allSkills, selectedCategory, minLevel]);
+
+  // add: helpers to convert numeric level to UI without showing raw %
+  const toSegments = (level) => Math.max(0, Math.min(5, Math.round((level ?? 0) / 20)));
+  const levelToTier = (level) => {
+    const v = level ?? 0;
+    if (v >= 90) return { key: 'expert', label: 'Expert' };
+    if (v >= 75) return { key: 'advanced', label: 'Advanced' };
+    if (v >= 60) return { key: 'intermediate', label: 'Intermediate' };
+    return { key: 'beginner', label: 'Beginner' };
+  };
+
   return (
     <section className="project" id="projects">
       <Container>
@@ -83,85 +117,131 @@ export const Projects = () => {
           <Col size={12}>
             <TrackVisibility>
               {({ isVisible }) =>
-                <div className="isVisible" >
-                  <h2>Projects</h2>
+                <div className="isVisible">
+                  <h2 className="brand-gradient" style={{ fontSize: 48 }}>Projects</h2>
+                  <p style={{ maxWidth: 820, margin: "12px auto 28px" }}>
+                    Selected work showcasing full‑stack skills, UI craft, and performance focus.
+                  </p>
                   <Tab.Container id="projects-tabs" defaultActiveKey="first">
                     <Nav variant="pills" className="nav-pills mb-5 justify-content-center align-items-center" id="pills-tab">
-                      <Nav.Item>
-                        <Nav.Link eventKey="first">Projects</Nav.Link>
-                      </Nav.Item>
-                      <Nav.Item>
-                        <Nav.Link eventKey="second">My Skills</Nav.Link>
-                      </Nav.Item>
-                      <Nav.Item>
-                        <Nav.Link eventKey="third">Certificates</Nav.Link>
-                      </Nav.Item>
+                      <Nav.Item><Nav.Link eventKey="first">Projects</Nav.Link></Nav.Item>
+                      <Nav.Item><Nav.Link eventKey="second">My Skills</Nav.Link></Nav.Item>
+                      <Nav.Item><Nav.Link eventKey="third">Certificates</Nav.Link></Nav.Item>
                     </Nav>
-                    <Tab.Content id="slideInUp" className="isVisible" >
+                    <Tab.Content id="slideInUp" className="isVisible">
                       <Tab.Pane eventKey="first">
-                        <Row>
-                              {projects.map((project, index) => (
-                                 <Col key={index} xs={12} sm={6} md={4} className="d-flex">
-                                <ProjectCard {...project} />
-                                  </Col>
-                                  ))}
+                        <Row className="g-4">
+                          {projects.map((project, index) => (
+                            <Col key={index} xs={12} sm={6} md={4} className="d-flex">
+                              <ProjectCard {...project} />
+                            </Col>
+                          ))}
                         </Row>
                       </Tab.Pane>
+
+                      {/* My Skills pane (updated: no raw percentages, tier + segments) */}
                       <Tab.Pane eventKey="second">
                         <div className="skills-container">
-                          <div className="skills-header text-center mb-5">
-                            <h2 className="mb-3">My Technical Skills</h2>
+                          <div className="skills-header text-center mb-4">
+                            <h2 className="mb-2">My Technical Skills</h2>
                             <p className="lead">
-                              I have a strong foundation in frontend development with expertise in creating responsive web applications. 
-                              Currently expanding my skills in backend technologies to become a fullstack developer.
+                              Explore my core stack. Filter by category and proficiency to discover my strengths.
                             </p>
                           </div>
-                          
-                          <Row className="g-4">
-                            {skillCategories.map((category, catIndex) => (
-                              <Col md={4} key={catIndex}>
-                                <div className="skill-category-card">
-                                  <div className="category-header">
-                                    <div className="category-icon">
-                                      {category.icon}
+
+                          {/* Controls */}
+                          <div className="skills-controls">
+                            <div className="chip-row">
+                              {categories.map((cat) => (
+                                <button
+                                  key={cat}
+                                  className={`filter-chip ${selectedCategory === cat ? 'active' : ''}`}
+                                  onClick={() => setSelectedCategory(cat)}
+                                >
+                                  {cat}
+                                </button>
+                              ))}
+                            </div>
+
+                            <div className="range-wrap">
+                              <label htmlFor="minLevel">Minimum proficiency</label>
+                              <div className="range-row">
+                                <input
+                                  id="minLevel"
+                                  type="range"
+                                  min="0"
+                                  max="100"
+                                  step="5"
+                                  value={minLevel}
+                                  onChange={(e) => setMinLevel(parseInt(e.target.value, 10))}
+                                />
+                                <span className="range-value">{minLevel}%</span>
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Matrix */}
+                          <div className="skill-matrix">
+                            {filteredSkills.map((skill, i) => {
+                              const tier = levelToTier(skill.level);
+                              const segs = toSegments(skill.level);
+                              return (
+                                <motion.div
+                                  key={`${skill.name}-${i}`}
+                                  className="skill-tile"
+                                  initial={{ opacity: 0, y: 10 }}
+                                  animate={{ opacity: 1, y: 0 }}
+                                  transition={{ duration: 0.25, delay: i * 0.03 }}
+                                >
+                                  <div className="tile-header">
+                                    <div className="skill-badge">
+                                      <span className="skill-icon">{skill.icon || <FaCode />}</span>
                                     </div>
-                                    <h3>{category.title}</h3>
+                                    <div className="skill-meta">
+                                      <span className="skill-name">{skill.name}</span>
+                                      {typeof skill.level === 'number' && (
+                                        <span
+                                          className={`tier-badge ${tier.key}`}
+                                          title="Proficiency tier"
+                                          aria-label={`${skill.name} ${tier.label}`}
+                                        >
+                                          {tier.label}
+                                        </span>
+                                      )}
+                                    </div>
                                   </div>
-                                  <div className="skills-list">
-                                    {category.skills.map((skill, skillIndex) => (
-                                      <div className="skill-item" key={skillIndex}>
-                                        <div className="skill-info">
-                                          <div className="skill-icon">
-                                            {skill.icon || <FaCode />}
-                                          </div>
-                                          <span className="skill-name">{skill.name}</span>
-                                        </div>
-                                        <div className="progress-container">
-                                          <div 
-                                            className="progress-bar" 
-                                            style={{ width: `${skill.level}%` }}
-                                          >
-                                            <span className="progress-text">{skill.level}%</span>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    ))}
+
+                                  {typeof skill.level === 'number' && (
+                                    <div
+                                      className="segments"
+                                      role="img"
+                                      aria-label={`${skill.name} ${tier.label} proficiency`}
+                                    >
+                                      {[0, 1, 2, 3, 4].map((idx) => (
+                                        <span key={idx} className={`seg ${idx < segs ? 'on' : ''}`} />
+                                      ))}
+                                    </div>
+                                  )}
+
+                                  <div className="tile-footer">
+                                    <span className="category-chip">{skill.category}</span>
                                   </div>
-                                </div>
-                              </Col>
-                            ))}
-                          </Row>
-                          
+                                </motion.div>
+                              );
+                            })}
+                          </div>
+
+                          {/* Optional summary stays */}
                           <div className="skills-summary mt-5">
-                            <h3 className="text-center mb-4">Development Goals</h3>
+                            <h3 className="text-center mb-3">Development Goals</h3>
                             <p className="text-center">
-                              My goal is to become proficient in both frontend and backend development, enabling me to create comprehensive 
-                              and dynamic web solutions. I'm focused on mastering modern architectures, performance optimization, 
-                              and building scalable applications.
+                              Growing into a stronger full‑stack engineer by deepening backend expertise,
+                              modern React patterns, and performance optimization.
                             </p>
                           </div>
                         </div>
                       </Tab.Pane>
+
                       <Tab.Pane eventKey="third">
                         <section id="certificates">
                           <h2 style={{ color: '#f5f5f5' }}>Certificates</h2>
@@ -194,124 +274,152 @@ export const Projects = () => {
           </Col>
         </Row>
       </Container>
-      
+
+      {/* keep your existing styles, lightly tuned */}
       <style jsx>{`
         .skills-container {
-          padding: 30px;
-          background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-          border-radius: 15px;
-          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+          padding: 28px;
+          background: linear-gradient(135deg, rgba(26,26,46,.9) 0%, rgba(22,33,62,.9) 100%);
+          border-radius: 18px;
+          border: 1px solid rgba(255,255,255,0.08);
+          backdrop-filter: blur(8px);
+          box-shadow: 0 18px 50px rgba(0,0,0,.35);
+          overflow-x: hidden; /* prevent any horizontal overflow */
         }
-        
-        .skill-category-card {
-          background: rgba(255, 255, 255, 0.05);
-          border-radius: 12px;
-          padding: 25px;
-          height: 100%;
-          transition: transform 0.3s ease, box-shadow 0.3s ease;
-          border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .skill-category-card:hover {
-          transform: translateY(-5px);
-          box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
-          background: rgba(255, 255, 255, 0.08);
-        }
-        
-        .category-header {
+
+        .skills-controls {
           display: flex;
+          gap: 18px;
           align-items: center;
-          margin-bottom: 20px;
-          padding-bottom: 15px;
-          border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+          justify-content: space-between;
+          flex-wrap: wrap;
+          margin-bottom: 18px;
         }
-        
-        .category-icon {
-          background: linear-gradient(45deg, #0ea5e9, #0d9488);
-          width: 50px;
-          height: 50px;
-          border-radius: 50%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          margin-right: 15px;
+        .chip-row {
+          display: flex; gap: 10px; flex-wrap: wrap;
         }
-        
-        .skill-category-icon {
-          font-size: 24px;
-          color: white;
+        .filter-chip {
+          padding: 8px 12px;
+          border-radius: 999px;
+          color: #e2e8f0;
+          background: rgba(255,255,255,0.06);
+          border: 1px solid rgba(255,255,255,0.12);
+          font-weight: 700;
+          letter-spacing: .2px;
+          transition: transform .15s ease, background .2s ease, border-color .2s ease;
         }
-        
-        .skills-list {
-          display: flex;
-          flex-direction: column;
-          gap: 15px;
+        .filter-chip:hover { transform: translateY(-1px); }
+        .filter-chip.active {
+          background: linear-gradient(90deg, var(--primary), var(--secondary));
+          border-color: rgba(255,255,255,0.2);
+          color: #fff;
         }
-        
-        .skill-item {
-          display: flex;
-          flex-direction: column;
-        }
-        
-        .skill-info {
-          display: flex;
-          align-items: center;
-          margin-bottom: 8px;
-        }
-        
-        .skill-icon {
-          margin-right: 10px;
-          color: #0ea5e9;
-          font-size: 18px;
-        }
-        
-        .skill-name {
-          color: #f8fafc;
-          font-weight: 500;
-        }
-        
-        .progress-container {
+
+        .range-wrap { display: grid; gap: 6px; min-width: 260px; }
+        .range-wrap label { font-weight: 700; color: #cbd5e1; font-size: .9rem; }
+        .range-row { display: flex; align-items: center; gap: 10px; }
+        .range-row input[type="range"] { width: 200px; accent-color: #22d3ee; }
+        .range-value { min-width: 42px; text-align: right; color: #e2e8f0; font-weight: 700; }
+
+        .skill-matrix {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+          gap: 14px;
+          grid-auto-rows: 1fr;        /* equal height tiles per row */
           width: 100%;
-          height: 10px;
-          background: rgba(255, 255, 255, 0.1);
-          border-radius: 5px;
-          overflow: hidden;
         }
-        
-        .progress-bar {
-          height: 100%;
-          background: linear-gradient(90deg, #0ea5e9, #0d9488);
-          border-radius: 5px;
-          position: relative;
-          transition: width 1s ease-out;
+        .skill-tile {
+          background: var(--card);
+          border: 1px solid var(--glass-border);
+          border-radius: 14px;
+          padding: 14px;
+          display: flex;              /* flex prevents content from stretching out */
+          flex-direction: column;
+          gap: 10px;
+          transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+          box-shadow: 0 10px 28px rgba(2,6,23,0.35);
+          contain: layout paint;      /* avoid hover shadows affecting layout */
         }
-        
-        .progress-text {
-          position: absolute;
-          right: 5px;
-          top: -25px;
-          font-size: 12px;
-          color: #f8fafc;
-          font-weight: 500;
+        .skill-tile:hover {
+          transform: translateY(-4px);
+          border-color: rgba(255,255,255,0.18);
+          box-shadow: 0 16px 40px rgba(2,6,23,0.45);
         }
-        
-        .skills-summary {
-          background: rgba(255, 255, 255, 0.05);
-          border-radius: 12px;
-          padding: 25px;
-          border: 1px solid rgba(255, 255, 255, 0.1);
+
+        .tile-header { display: flex; align-items: center; gap: 10px; }
+        .skill-badge {
+          width: 38px; height: 38px; border-radius: 10px;
+          display: grid; place-items: center;
+          background: rgba(255,255,255,0.06);
+          border: 1px solid rgba(255,255,255,0.12);
+          flex: 0 0 auto;
         }
-        
-        .skills-summary p {
+        .skill-icon :global(svg) { width: 18px; height: 18px; color: #7dd3fc; }
+
+        /* prevent header from pushing tile width */
+        .skill-meta {
+          display: grid;
+          grid-template-columns: 1fr auto;
+          align-items: center;
+          gap: 8px;
+          min-width: 0;
+          width: 100%;
+        }
+        .skill-name {
+          font-weight: 800; color: #eef2ff; letter-spacing: .2px;
+          overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+        }
+
+        .tier-badge {
+          padding: 4px 10px;
+          border-radius: 999px;
+          font-size: .75rem;
+          font-weight: 800;
+          border: 1px solid rgba(255,255,255,0.12);
+          background: rgba(255,255,255,0.06);
+          color: #e2e8f0;
+          letter-spacing: .2px;
+          white-space: nowrap;
+        }
+        .tier-badge.expert { background: linear-gradient(90deg, var(--primary), var(--secondary)); color: #fff; border-color: rgba(255,255,255,0.2); }
+        .tier-badge.advanced { background: rgba(14,165,233,.15); color: #7dd3fc; border-color: rgba(125,211,252,.25); }
+        .tier-badge.intermediate { background: rgba(168,85,247,.12); color: #d8b4fe; border-color: rgba(216,180,254,.25); }
+        .tier-badge.beginner { background: rgba(255,255,255,0.06); color: #cbd5e1; border-color: rgba(255,255,255,0.12); }
+
+        /* Five‑segment bar: grid-based so it never overflows the tile */
+        .segments {
+          display: grid;
+          grid-template-columns: repeat(5, minmax(0, 1fr));
+          column-gap: 8px;
+          align-items: center;
+          margin-top: 6px;
+          width: 100%;
+        }
+        .seg {
+          width: 100%;
+          height: 8px;
+          border-radius: 6px;
+          background: rgba(255,255,255,0.06);
+          border: 1px solid rgba(255,255,255,0.12);
+          transition: background .25s ease, transform .2s ease, box-shadow .25s ease;
+        }
+        .seg.on {
+          background: linear-gradient(90deg, var(--primary), var(--secondary));
+          box-shadow: 0 0 14px rgba(14,165,233,.35);
+          transform: translateY(-1px);
+        }
+
+        .tile-footer { display: flex; justify-content: flex-end; }
+        .category-chip {
+          padding: 4px 8px;
+          border-radius: 999px;
           color: #cbd5e1;
-          line-height: 1.7;
+          font-size: .75rem;
+          border: 1px solid rgba(255,255,255,0.12);
+          background: rgba(255,255,255,0.04);
         }
-        
-        @media (max-width: 768px) {
-          .skill-category-card {
-            margin-bottom: 20px;
-          }
-        }
+
+        .project .nav.nav-pills .nav-link { color: #e2e8f0; font-weight: 700; }
       `}</style>
     </section>
   )

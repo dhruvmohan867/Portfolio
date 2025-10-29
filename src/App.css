@@ -37,7 +37,9 @@ body {
   background-color: #121212 !important;
   color: #fff !important;
   font-family: 'Centra', sans-serif !important;
-  background: linear-gradient(-45deg,#0096cd,#bf3ce7,#ff4f93, #ee7752);
+  background: radial-gradient(1200px 800px at 10% 10%, rgba(14,165,233,0.15), transparent 40%),
+              radial-gradient(1000px 700px at 90% 20%, rgba(13,148,136,0.18), transparent 40%),
+              linear-gradient(180deg, #0b0f17, #0b0f17);
 	background-size: 400% 400%;
 	animation: gradient 15s ease infinite;
 	height: 100vh;
@@ -111,10 +113,14 @@ nav.navbar {
   top: 0;
   z-index: 9999;
   transition:  0.32s ease-in-out;
+  background: transparent;
+  border-bottom: 1px solid transparent;
 }
 nav.navbar.scrolled {
   padding: 0px 0;
-  background-color: #121212;
+  background: var(--glass);
+  border-color: var(--glass-border);
+  box-shadow: 0 8px 30px rgba(2, 6, 23, 0.35);
 }
 nav.navbar a.navbar-brand {
     width: 9%;
@@ -410,7 +416,7 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
 .project {
   padding: 80px 0;
   position: relative;
-  background-color: black;
+  background: linear-gradient(180deg, rgba(2,6,23,0.6), rgba(2,6,23,0.9));
 }
 .project h2 {
 	font-size: 45px;
@@ -430,7 +436,9 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   width: 72%;
   margin: 0 auto;
   border-radius: 50px;
-  background-color: rgb(255 255 255 / 10%);
+  background: var(--card-2);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(6px);
   overflow: hidden;
 }
 .project .nav.nav-pills .nav-item {
@@ -698,6 +706,8 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
 /************ Footer Css ************/
 .footer {
   padding: 0 0 50px 0;
+  background: linear-gradient(180deg, rgba(2,6,23,0.4), rgba(2,6,23,0.8));
+  border-top: 1px solid var(--glass-border);
   background-image: url('./assets/img/footer-bg.png');
   background-position: center center;
   background-size: cover;
@@ -809,4 +819,144 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   color: #B8B8B8;
   letter-spacing: 0.5px;
   margin-top: 20px;
+}
+
+/* Design tokens */
+:root {
+  --bg: #0b0f17;
+  --text: #e2e8f0;
+  --muted: #94a3b8;
+  --card: rgba(255, 255, 255, 0.05);
+  --card-2: rgba(255, 255, 255, 0.08);
+  --glass: rgba(17, 25, 40, 0.55);
+  --glass-border: rgba(255, 255, 255, 0.12);
+  --primary: #0ea5e9;
+  --secondary: #0d9488;
+  --accent: #a855f7;
+}
+
+/* Global background refinement */
+body {
+  /* ...existing code... */
+  background: radial-gradient(1200px 800px at 10% 10%, rgba(14,165,233,0.15), transparent 40%),
+              radial-gradient(1000px 700px at 90% 20%, rgba(13,148,136,0.18), transparent 40%),
+              linear-gradient(180deg, #0b0f17, #0b0f17);
+}
+
+/* Utility */
+.glass {
+  background: var(--glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+}
+
+/* Brand gradient text */
+.brand-gradient {
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent !important;
+  font-weight: 800;
+  letter-spacing: 0.6px;
+}
+
+/* Navbar polish */
+nav.navbar {
+  /* ...existing code... */
+  background: transparent;
+  border-bottom: 1px solid transparent;
+}
+nav.navbar.scrolled {
+  background: var(--glass);
+  border-color: var(--glass-border);
+  box-shadow: 0 8px 30px rgba(2, 6, 23, 0.35);
+}
+
+/* Buttons */
+.navbar-text button,
+.contact form button,
+.project-link-button,
+.project .nav.nav-pills .nav-link.active {
+  background: linear-gradient(90deg, var(--primary), var(--secondary)) !important;
+  border: 1px solid rgba(255,255,255,0.08) !important;
+  color: #fff !important;
+}
+.navbar-text button:hover,
+.project-link-button:hover {
+  filter: brightness(1.05);
+  transform: translateY(-1px);
+}
+
+/* Section containers */
+.skill-bx,
+.newsletter-bx {
+  background: var(--card-2);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 20px 50px rgba(2, 6, 23, 0.35);
+}
+
+/* Headings */
+.banner h1,
+.project h2,
+.skill h2,
+.contact h2 {
+  letter-spacing: 0.6px;
+  text-shadow: 0 4px 24px rgba(0,0,0,0.3);
+}
+
+/* Paragraphs */
+.banner p,
+.project p,
+.skill p {
+  color: var(--muted);
+}
+
+/* Projects grid and cards */
+.project {
+  /* ...existing code... */
+  background: linear-gradient(180deg, rgba(2,6,23,0.6), rgba(2,6,23,0.9));
+}
+.project .nav.nav-pills {
+  background: var(--card-2);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(6px);
+}
+
+/* ProjectCard shared classes */
+.project-card {
+  position: relative;
+  background: var(--card);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 14px 40px rgba(2,6,23,0.45);
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+}
+.project-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 24px 60px rgba(2,6,23,0.55);
+  border-color: rgba(255,255,255,0.18);
+}
+.project-image-wrapper {
+  height: 220px;
+  background: #0b1220;
+}
+.project-image {
+  object-fit: cover;
+}
+.project-title {
+  color: #eef2ff;
+}
+.project-description {
+  color: #cbd5e1;
+}
+
+/* Footer polish */
+.footer {
+  background: linear-gradient(180deg, rgba(2,6,23,0.4), rgba(2,6,23,0.8));
+  border-top: 1px solid var(--glass-border);
+}
+.footer-divider {
+  border-top: 1px solid var(--glass-border) !important;
 }

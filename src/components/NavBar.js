@@ -10,35 +10,22 @@ import {
 } from "react-router-dom";
 
 export const NavBar = () => {
-
   const [activeLink, setActiveLink] = useState('home');
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => {
-      if (window.scrollY > 50) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
-    }
-
+    const onScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", onScroll);
-
     return () => window.removeEventListener("scroll", onScroll);
-  }, [])
+  }, []);
 
-  const onUpdateActiveLink = (value) => {
-    setActiveLink(value);
-  }
+  const onUpdateActiveLink = (value) => setActiveLink(value);
 
   return (
     <Router>
-      <Navbar expand="md" className={scrolled ? "scrolled" : ""}>
+      <Navbar expand="md" className={`${scrolled ? "scrolled" : ""} glass`}>
         <Container>
-          {/* <Navbar.Brand href="/">
-            <img src={logo} alt="Logo" />
-          </Navbar.Brand> */}
+          <Navbar.Brand href="#home" className="brand-gradient">Dhruv</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav">
             <span className="navbar-toggler-icon"></span>
           </Navbar.Toggle>
@@ -50,17 +37,17 @@ export const NavBar = () => {
             </Nav>
             <span className="navbar-text">
               <div className="social-icon">
-                <a href="https://www.linkedin.com/in/dhruv-mohan-shukla-4a385b254/"><img src={navIcon1} alt="" /></a>
-                <a href="https://github.com/dhruvmohan867"><img src={navIcon2} alt="" width="16" height="16" viewBox="0 0 16 16" fill="none"   /></a>
-                <a href="https://leetcode.com/u/Dhruv_2_1234/"><img src={navIcon3} alt="" /></a>
+                <a href="https://www.linkedin.com/in/dhruv-mohan-shukla-4a385b254/"><img src={navIcon1} alt="LinkedIn" /></a>
+                <a href="https://github.com/dhruvmohan867"><img src={navIcon2} alt="GitHub" width="16" height="16" /></a>
+                <a href="https://leetcode.com/u/Dhruv_2_1234/"><img src={navIcon3} alt="LeetCode" /></a>
               </div>
-              <a href="https://www.linkedin.com/in/dhruv-mohan-shukla-4a385b254/">
-                <button className="vvd"><span>Let's Connect</span></button>
+              <a href="#connect">
+                <button className="vvd"><span>Contact</span></button>
               </a>
             </span>
           </Navbar.Collapse>
         </Container>
       </Navbar>
     </Router>
-  )
+  );
 }
