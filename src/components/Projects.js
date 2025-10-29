@@ -7,7 +7,7 @@ import 'animate.css';
 import certificateImg1 from "../assets/img/download.png";
 import certificateImg2 from "../assets/img/unnamed.jpg";
 import TrackVisibility from 'react-on-screen';
-import { FaHtml5, FaCss3Alt, FaJs, FaReact, FaNodeJs, FaDatabase, FaCode } from 'react-icons/fa';
+import { FaHtml5, FaCss3Alt, FaJs, FaReact, FaNodeJs, FaDatabase, FaCode, FaAward, FaExternalLinkAlt, FaRegCalendarAlt } from 'react-icons/fa';
 import { SiExpress, SiMongodb } from 'react-icons/si';
 import proImg4 from "../assets/img/ChatGPT Image Aug 28, 2025, 10_46_38 PM.png";
 import githubLogo from "../assets/img/github.svg";
@@ -74,6 +74,26 @@ export const Projects = () => {
         { name: "Cloud Deployment", level: 65 },
         { name: "Testing Strategies", level: 60 }
       ]
+    }
+  ];
+
+  // add: structured certificate data
+  const certificates = [
+    {
+      title: "AI/ML Workshop",
+      issuer: "IIT Kanpur",
+      date: "2023",
+      image: certificateImg1,
+      link: "https://drive.google.com/file/d/12ycF1dyFke4F-nasUxnsx16PBkfTvmPu/view?usp=sharing",
+      tags: ["AI/ML", "Workshop"]
+    },
+    {
+      title: "Smart India Hackathon - Internal",
+      issuer: "SIH",
+      date: "2023",
+      image: certificateImg2,
+      link: "https://drive.google.com/file/d/1dsYbx0205wW-FpQUnp_xMt7ujYp5irQK/view?usp=sharing",
+      tags: ["Hackathon", "Teamwork"]
     }
   ];
 
@@ -242,29 +262,60 @@ export const Projects = () => {
                         </div>
                       </Tab.Pane>
 
+                      {/* replace: Certificates pane */}
                       <Tab.Pane eventKey="third">
-                        <section id="certificates">
-                          <h2 style={{ color: '#f5f5f5' }}>Certificates</h2>
-                          <ul className="certificates-list">
-                            <li className="certificate-item">
-                              <img src={certificateImg1} alt="Certificate 3" className="certificate-img" />
-                              <div className="certificate-info">
-                                <a href="https://drive.google.com/file/d/12ycF1dyFke4F-nasUxnsx16PBkfTvmPu/view?usp=sharing" target="_blank" rel="noopener noreferrer">
-                                  Overview of Machine learning
-                                </a>
-                                <p>I completed a workshop on AI/ML at IIT Kanpur, where I gained valuable insights into the fundamentals of artificial intelligence and machine learning. The workshop provided hands-on experience with various machine learning algorithms and techniques, enhancing my understanding of how to apply these concepts to real-world problems. This experience has significantly broadened my knowledge and skills in the AI/ML domain.</p>
-                              </div>
-                            </li>
-                            <li className="certificate-item">
-                              <img src={certificateImg2} alt="Certificate 1" className="certificate-img" />
-                              <div className="certificate-info">
-                                <a href="https://drive.google.com/file/d/1dsYbx0205wW-FpQUnp_xMt7ujYp5irQK/view?usp=sharing" target="_blank" rel="noopener noreferrer">
-                                  Internal Hackathon
-                                </a>
-                                <p>I participated in the Internal Hackathon of Smart Indian Hackathon, where I successfully secured 3rd position. This experience allowed me to collaborate with a talented team, solve complex problems, and innovate under pressure. Our project was well-received for its creativity and technical execution, highlighting my skills in problem-solving and teamwork.</p>
-                              </div>
-                            </li>
-                          </ul>
+                        <section className="cert-section" id="certificates">
+                          <h2 className="brand-gradient" style={{ fontSize: 36, marginBottom: 14 }}>Certificates</h2>
+                          <p style={{ color: "var(--muted)", marginBottom: 18, maxWidth: 820 }}>
+                            Recognitions and programs that strengthened practical skills.
+                          </p>
+
+                          <div className="cert-grid">
+                            {certificates.map((c, i) => (
+                              <motion.article
+                                key={c.title + i}
+                                className="cert-card glass"
+                                initial={{ opacity: 0, y: 10 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true, amount: 0.2 }}
+                                transition={{ duration: 0.3, delay: i * 0.05 }}
+                              >
+                                <div className="cert-ribbon"><FaAward /> <span>Certified</span></div>
+
+                                <div className="cert-media">
+                                  <img src={c.image} alt={`${c.title} certificate`} />
+                                </div>
+
+                                <div className="cert-body">
+                                  <h4 className="cert-title">{c.title}</h4>
+                                  <div className="cert-meta">
+                                    <span className="issuer">{c.issuer}</span>
+                                    {c.date && (
+                                      <span className="date"><FaRegCalendarAlt /> {c.date}</span>
+                                    )}
+                                  </div>
+
+                                  {Array.isArray(c.tags) && c.tags.length > 0 && (
+                                    <div className="cert-tags">
+                                      {c.tags.map(tag => <span key={tag} className="tag">{tag}</span>)}
+                                    </div>
+                                  )}
+
+                                  <div className="cert-actions">
+                                    <a
+                                      href={c.link}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      className="project-link-button"
+                                      aria-label={`View ${c.title}`}
+                                    >
+                                      <FaExternalLinkAlt /> <span>View</span>
+                                    </a>
+                                  </div>
+                                </div>
+                              </motion.article>
+                            ))}
+                          </div>
                         </section>
                       </Tab.Pane>
                     </Tab.Content>
@@ -420,6 +471,61 @@ export const Projects = () => {
         }
 
         .project .nav.nav-pills .nav-link { color: #e2e8f0; font-weight: 700; }
+
+        /* Certificates */
+        .cert-section { margin-top: 10px; }
+        .cert-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+          gap: 16px;
+        }
+        .cert-card {
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          border: 1px solid var(--glass-border);
+          background: var(--card);
+          border-radius: 16px;
+          overflow: hidden;
+          box-shadow: 0 16px 44px rgba(2,6,23,.45);
+          transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+          height: 100%;
+        }
+        .cert-card:hover {
+          transform: translateY(-6px);
+          border-color: rgba(255,255,255,0.18);
+          box-shadow: 0 22px 60px rgba(2,6,23,.55);
+        }
+
+        .cert-ribbon {
+          position: absolute;
+          top: 10px; left: 10px;
+          display: inline-flex; align-items: center; gap: 6px;
+          padding: 6px 10px; border-radius: 999px;
+          font-weight: 800; font-size: .75rem;
+          background: linear-gradient(90deg, var(--primary), var(--secondary));
+          color: #fff; z-index: 2;
+          border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .cert-media { height: 160px; background: #0b1220; overflow: hidden; }
+        .cert-media img { width: 100%; height: 100%; object-fit: cover; transition: transform .45s ease; }
+        .cert-card:hover .cert-media img { transform: scale(1.04); }
+
+        .cert-body { padding: 14px; display: grid; gap: 8px; }
+        .cert-title { margin: 0; font-weight: 800; letter-spacing: .3px; color: #eef2ff; }
+        .cert-meta { display: flex; align-items: center; gap: 10px; color: #cbd5e1; font-weight: 700; }
+        .cert-meta .date { display: inline-flex; align-items: center; gap: 6px; }
+        .issuer { color: #a5b4fc; }
+
+        .cert-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+        .tag {
+          padding: 4px 8px; border-radius: 999px; font-size: .75rem; font-weight: 700;
+          background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); color: #cbd5e1;
+        }
+
+        .cert-actions { margin-top: 6px; display: flex; justify-content: flex-end; }
+        .cert-actions .project-link-button { display: inline-flex; align-items: center; gap: 8px; }
       `}</style>
     </section>
   )
