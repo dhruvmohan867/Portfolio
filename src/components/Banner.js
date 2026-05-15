@@ -12,7 +12,7 @@ export const Banner = () => {
   const [text, setText] = useState('');
   const [delta, setDelta] = useState(300 - Math.random() * 100);
   const [index, setIndex] = useState(1);
-  const toRotate = [ "Web Developer", "Programmer", "UI/UX Designer" ];
+  const toRotate = ["Full-Stack Developer", "Systems Programmer", "Problem Solver"];
   const period = 2000;
 
   useEffect(() => {
@@ -51,31 +51,32 @@ export const Banner = () => {
   return (
     <section className="banner" id="home">
       <Container>
-        <Row className="aligh-items-center">
+        <Row className="align-items-center">
           <Col xs={12} md={6} xl={7}>
             <TrackVisibility>
               {({ isVisible }) =>
                 <motion.div
-                  initial={{ opacity: 0, y: 18 }}
-                  animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 18 }}
+                  initial={{ opacity: 0, y: 24 }}
+                  animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 24 }}
                   transition={{ duration: 0.6, ease: "easeOut" }}
                 >
-                  <h1>{`Hi! I'm Dhruv `}
+                  <p className="banner-greeting">Hello, I'm</p>
+                  <h1>Dhruv Mohan Shukla
                     <br />
-                    <span className="txt-rotate" dataPeriod="100" data-rotate='[ "Web Developer", "Coder", "UI/UX Designer" ]'>
-                      <span className="wrap">a {text}</span>
+                    <span className="txt-rotate" dataPeriod="100" data-rotate='[ "Full-Stack Developer", "Systems Programmer", "Problem Solver" ]'>
+                      <span className="wrap">{text}</span>
                     </span>
                   </h1>
                   <p className="dark-text">
-                    I am a skilled web developer and competitive programmer with strong proficiency in DSA.
-                    I love crafting performant, accessible interfaces and shipping resilient backends.
+                    I build scalable full-stack applications, high-performance systems software,
+                    and ML-powered solutions. Passionate about clean architecture and shipping quality code.
                   </p>
                   <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
                     <a href="#projects">
-                      <button><span>View Projects</span> <ArrowRightCircle size={25} /></button>
+                      <button className="banner-btn primary"><span>View Projects</span> <ArrowRightCircle size={18} /></button>
                     </a>
                     <a href="https://www.linkedin.com/in/dhruv-mohan-shukla-4a385b254/" target="_blank" rel="noreferrer">
-                      <button><span>Let’s Connect</span> <ArrowRightCircle size={25} /></button>
+                      <button className="banner-btn secondary"><span>Let's Connect</span> <ArrowRightCircle size={18} /></button>
                     </a>
                   </div>
                 </motion.div>
@@ -95,14 +96,14 @@ export const Banner = () => {
                     src={headerImg}
                     alt="Header Img"
                     style={{
-                      borderRadius: '24px',
+                      borderRadius: '20px',
                       objectFit: 'cover',
-                      width: '90%',
+                      width: '100%',
                       height: 'auto',
-                      maxWidth: '420px',
-                      marginLeft: '12%',
-                      boxShadow: '0 22px 60px rgba(2,6,23,0.6)',
-                      border: '1px solid rgba(255,255,255,0.1)'
+                      maxWidth: '440px',
+                      marginLeft: '8%',
+                      boxShadow: '0 16px 48px rgba(0,0,0,0.4)',
+                      border: '1px solid rgba(148,163,184,0.08)'
                     }}
                   />
                 </motion.div>
@@ -111,6 +112,55 @@ export const Banner = () => {
           </Col>
         </Row>
       </Container>
+
+      <style jsx>{`
+        .banner-greeting {
+          font-size: 15px;
+          font-weight: 600;
+          letter-spacing: 2px;
+          text-transform: uppercase;
+          color: var(--primary-light);
+          margin-bottom: 12px;
+        }
+        .banner-btn {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          padding: 14px 24px;
+          border-radius: var(--radius-sm);
+          font-size: 15px;
+          font-weight: 600;
+          letter-spacing: 0.2px;
+          transition: var(--transition);
+          margin-top: 28px;
+          cursor: pointer;
+        }
+        .banner-btn.primary {
+          background: linear-gradient(135deg, var(--primary), #4f46e5);
+          color: #fff;
+          border: 1px solid rgba(255,255,255,0.06);
+        }
+        .banner-btn.primary:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 8px 28px rgba(99,102,241,0.3);
+        }
+        .banner-btn.secondary {
+          background: transparent;
+          color: var(--text);
+          border: 1px solid var(--border);
+        }
+        .banner-btn.secondary:hover {
+          border-color: rgba(99,102,241,0.25);
+          background: rgba(99,102,241,0.06);
+          transform: translateY(-2px);
+        }
+        .banner-btn svg {
+          transition: var(--transition);
+        }
+        .banner-btn:hover svg {
+          transform: translateX(4px);
+        }
+      `}</style>
     </section>
   )
 }

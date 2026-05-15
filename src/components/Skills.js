@@ -1,182 +1,303 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { motion } from "framer-motion";
-import { FaHtml5, FaCss3Alt, FaJs, FaReact, FaNodeJs, FaGitAlt, FaGithub, FaDatabase } from "react-icons/fa";
-import { SiExpress, SiMongodb, SiPostgresql, SiTailwindcss, SiBootstrap, SiDocker, SiVite } from "react-icons/si";
+import {
+  FaHtml5, FaCss3Alt, FaJs, FaReact, FaNodeJs, FaGitAlt, FaGithub,
+  FaDatabase, FaNpm, FaAws
+} from "react-icons/fa";
+import {
+  SiExpress, SiMongodb, SiPostgresql, SiTailwindcss, SiBootstrap,
+  SiDocker, SiVite, SiTypescript, SiRedux, SiNextdotjs,
+  SiJsonwebtokens, SiMongoosedotws, SiPostman, SiVercel, SiFirebase,
+  SiFramer, SiFastapi, SiCplusplus, SiPython
+} from "react-icons/si";
+import { TbApi } from "react-icons/tb";
+import { VscCode } from "react-icons/vsc";
 
-const stack = [
+const categories = [
   {
     title: "Frontend",
-    items: [
-      { name: "HTML", icon: <FaHtml5 />, level: 5 },
-      { name: "CSS", icon: <FaCss3Alt />, level: 5 },
-      { name: "JavaScript", icon: <FaJs />, level: 5 },
-      { name: "React", icon: <FaReact />, level: 5 },
-      { name: "Tailwind", icon: <SiTailwindcss />, level: 4 },
-      { name: "Bootstrap", icon: <SiBootstrap />, level: 4 },
-      { name: "Vite", icon: <SiVite />, level: 4 },
+    skills: [
+      { name: "React", icon: <FaReact />, color: "#61dafb" },
+      { name: "Next.js", icon: <SiNextdotjs />, color: "#e2e8f0" },
+      { name: "TypeScript", icon: <SiTypescript />, color: "#3178c6" },
+      { name: "JavaScript", icon: <FaJs />, color: "#f7df1e" },
+      { name: "Redux", icon: <SiRedux />, color: "#764abc" },
+      { name: "Tailwind CSS", icon: <SiTailwindcss />, color: "#06b6d4" },
+      { name: "HTML5", icon: <FaHtml5 />, color: "#e34f26" },
+      { name: "CSS3", icon: <FaCss3Alt />, color: "#1572b6" },
+      { name: "Bootstrap", icon: <SiBootstrap />, color: "#7952b3" },
+      { name: "Framer Motion", icon: <SiFramer />, color: "#bb4bff" },
+      { name: "Vite", icon: <SiVite />, color: "#646cff" },
     ],
   },
   {
     title: "Backend",
-    items: [
-      { name: "Node.js", icon: <FaNodeJs />, level: 4 },
-      { name: "Express", icon: <SiExpress />, level: 4 },
-      { name: "MongoDB", icon: <SiMongodb />, level: 4 },
-      { name: "PostgreSQL", icon: <SiPostgresql />, level: 3 },
-      { name: "Databases", icon: <FaDatabase />, level: 4 },
+    skills: [
+      { name: "Node.js", icon: <FaNodeJs />, color: "#339933" },
+      { name: "Express.js", icon: <SiExpress />, color: "#e2e8f0" },
+      { name: "FastAPI", icon: <SiFastapi />, color: "#009688" },
+      { name: "MongoDB", icon: <SiMongodb />, color: "#47a248" },
+      { name: "PostgreSQL", icon: <SiPostgresql />, color: "#4169e1" },
+      { name: "Mongoose", icon: <SiMongoosedotws />, color: "#880000" },
+      { name: "REST APIs", icon: <TbApi />, color: "#06b6d4" },
+      { name: "JWT Auth", icon: <SiJsonwebtokens />, color: "#d63aff" },
+      { name: "Databases", icon: <FaDatabase />, color: "#a78bfa" },
     ],
   },
   {
-    title: "Tools",
-    items: [
-      { name: "Git", icon: <FaGitAlt />, level: 5 },
-      { name: "GitHub", icon: <FaGithub />, level: 5 },
-      { name: "Docker", icon: <SiDocker />, level: 3 },
+    title: "Languages",
+    skills: [
+      { name: "JavaScript", icon: <FaJs />, color: "#f7df1e" },
+      { name: "TypeScript", icon: <SiTypescript />, color: "#3178c6" },
+      { name: "C++", icon: <SiCplusplus />, color: "#00599c" },
+      { name: "Python", icon: <SiPython />, color: "#3776ab" },
+    ],
+  },
+  {
+    title: "DevOps & Tools",
+    skills: [
+      { name: "Git", icon: <FaGitAlt />, color: "#f05032" },
+      { name: "GitHub", icon: <FaGithub />, color: "#e2e8f0" },
+      { name: "Docker", icon: <SiDocker />, color: "#2496ed" },
+      { name: "AWS", icon: <FaAws />, color: "#ff9900" },
+      { name: "Vercel", icon: <SiVercel />, color: "#e2e8f0" },
+      { name: "Firebase", icon: <SiFirebase />, color: "#ffca28" },
+      { name: "Postman", icon: <SiPostman />, color: "#ff6c37" },
+      { name: "VS Code", icon: <VscCode />, color: "#007acc" },
+      { name: "npm", icon: <FaNpm />, color: "#cb3837" },
     ],
   },
 ];
 
-const Segments = ({ n }) => (
-  <div className="segments" role="img" aria-label={`${n} of 5 proficiency`}>
-    {[0, 1, 2, 3, 4].map((i) => (
-      <span key={i} className={`seg ${i < n ? "on" : ""}`} />
-    ))}
-  </div>
-);
+const stats = [
+  { value: "500+", label: "DSA Problems" },
+  { value: "10+", label: "Projects Built" },
+  { value: "3+", label: "Years Coding" },
+];
 
 export const Skills = () => {
   return (
-    <section className="skills-v3" id="skills">
+    <section className="skills-section" id="skills">
       <Container>
         <Row className="justify-content-center">
           <Col lg={10}>
-            <div className="header text-center">
-              <h2 className="brand-gradient">Skills & Tooling</h2>
-              <p>Focused on building accessible, performant products across the stack.</p>
-            </div>
+            <motion.div
+              className="text-center"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.5 }}
+            >
+              <p className="section-label">EXPERTISE</p>
+              <h2 className="brand-gradient section-title">Skills & Technologies</h2>
+              <p className="section-sub">Technologies I work with to build scalable, performant applications.</p>
+            </motion.div>
           </Col>
         </Row>
 
-        <Row className="g-4">
-          {stack.map((cat, idx) => (
-            <Col key={cat.title} xs={12} md={6} lg={4}>
-              <motion.div
-                className="skill-card glass"
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.35, delay: idx * 0.05 }}
-              >
-                <div className="card-head">
-                  <h3>{cat.title}</h3>
-                </div>
-
-                <div className="skills-grid">
-                  {cat.items.map((s) => (
-                    <div key={s.name} className="skill-row">
-                      <div className="left">
-                        <span className="ico">{s.icon}</span>
-                        <span className="name">{s.name}</span>
-                      </div>
-                      <Segments n={s.level} />
-                    </div>
-                  ))}
-                </div>
-              </motion.div>
-            </Col>
+        <div className="categories-grid">
+          {categories.map((cat, catIdx) => (
+            <motion.div
+              key={cat.title}
+              className="category-card"
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.35, delay: catIdx * 0.08 }}
+            >
+              <h3 className="category-title">{cat.title}</h3>
+              <div className="category-skills">
+                {cat.skills.map((s, i) => (
+                  <motion.div
+                    key={s.name + i}
+                    className="skill-item"
+                    whileHover={{ y: -3, scale: 1.03 }}
+                    transition={{ duration: 0.15 }}
+                  >
+                    <span className="skill-icon" style={{ color: s.color }}>{s.icon}</span>
+                    <span className="skill-label">{s.name}</span>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
           ))}
-        </Row>
+        </div>
 
-        <Row className="g-3 mt-4">
-          <Col xs={12}>
-            <div className="stat-row">
-              <div className="stat">
-                <span className="value">500+</span>
-                <span className="label">DSA problems</span>
-              </div>
-              <div className="stat">
-                <span className="value">10+</span>
-                <span className="label">Projects</span>
-              </div>
-              <div className="stat">
-                <span className="value">3+</span>
-                <span className="label">Years coding</span>
-              </div>
+        <motion.div
+          className="stat-row"
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.45, delay: 0.1 }}
+        >
+          {stats.map((s) => (
+            <div className="stat" key={s.label}>
+              <span className="stat-value">{s.value}</span>
+              <span className="stat-label">{s.label}</span>
             </div>
-          </Col>
-        </Row>
+          ))}
+        </motion.div>
       </Container>
 
       <style jsx>{`
-        .skills-v3 {
-          padding: 110px 0 80px;
-          background: radial-gradient(1200px 700px at 15% 10%, rgba(14,165,233,.10), transparent 40%),
-                      radial-gradient(1000px 600px at 85% 0%, rgba(168,85,247,.10), transparent 40%),
-                      linear-gradient(180deg, rgba(2,6,23,.60), rgba(2,6,23,.90));
+        .skills-section {
+          padding: 100px 0 80px;
+          background:
+            radial-gradient(ellipse 800px 500px at 20% 10%, rgba(99,102,241,0.06), transparent 50%),
+            radial-gradient(ellipse 600px 400px at 80% 5%, rgba(6,182,212,0.04), transparent 50%),
+            linear-gradient(180deg, rgba(10,14,26,0.3), rgba(10,14,26,0.7));
         }
-        .header h2 { font-size: 45px; font-weight: 800; margin-bottom: 6px; }
-        .header p { color: var(--muted); max-width: 760px; margin: 0 auto 20px; }
 
-        .skill-card {
-          border: 1px solid var(--glass-border);
-          border-radius: 18px;
-          padding: 18px;
-          background: var(--card);
-          box-shadow: 0 16px 44px rgba(2,6,23,.45);
+        .section-label {
+          font-size: 13px;
+          font-weight: 700;
+          letter-spacing: 3px;
+          color: var(--primary-light);
+          margin-bottom: 8px;
         }
-        .card-head h3 { margin: 0 0 8px; font-weight: 800; letter-spacing: .3px; }
+        .section-title {
+          font-size: 42px;
+          font-weight: 800;
+          margin-bottom: 8px;
+          letter-spacing: -0.5px;
+        }
+        .section-sub {
+          color: var(--text-secondary);
+          font-size: 17px;
+          margin-bottom: 48px;
+        }
 
-        .skills-grid { display: grid; gap: 10px; }
-        .skill-row {
+        .categories-grid {
           display: grid;
-          grid-template-columns: 1fr auto;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 20px;
+          max-width: 960px;
+          margin: 0 auto 48px;
+        }
+
+        .category-card {
+          background: var(--surface);
+          border: 1px solid var(--glass-border);
+          border-radius: var(--radius);
+          padding: 24px;
+          transition: border-color var(--transition), box-shadow var(--transition);
+        }
+        .category-card:hover {
+          border-color: rgba(99,102,241,0.12);
+          box-shadow: 0 12px 36px rgba(0,0,0,0.15);
+        }
+
+        .category-title {
+          font-size: 14px;
+          font-weight: 700;
+          letter-spacing: 1.5px;
+          text-transform: uppercase;
+          color: var(--text-secondary);
+          margin-bottom: 16px;
+          padding-bottom: 10px;
+          border-bottom: 1px solid var(--glass-border);
+        }
+
+        .category-skills {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 8px;
+        }
+
+        .skill-item {
+          display: flex;
           align-items: center;
-          gap: 12px;
-          padding: 10px 10px;
-          border: 1px solid var(--glass-border);
-          border-radius: 12px;
-          background: rgba(255,255,255,.04);
+          gap: 8px;
+          padding: 8px 14px;
+          border-radius: var(--radius-sm);
+          background: rgba(148,163,184,0.04);
+          border: 1px solid rgba(148,163,184,0.06);
+          cursor: default;
+          transition: background var(--transition), border-color var(--transition);
         }
-        .left { display: inline-flex; align-items: center; gap: 10px; min-width: 0; }
-        .ico :global(svg) { width: 18px; height: 18px; color: #7dd3fc; }
-        .name {
-          font-weight: 800; letter-spacing: .2px; color: #eef2ff;
-          overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
-        }
-
-        /* 5-segment proficiency (no percentages) */
-        .segments {
-          display: grid;
-          grid-template-columns: repeat(5, minmax(0, 1fr));
-          column-gap: 8px;
-          width: 150px;
-        }
-        .seg {
-          width: 100%; height: 8px; border-radius: 6px;
-          background: rgba(255,255,255,.06);
-          border: 1px solid rgba(255,255,255,.12);
-          transition: background .2s ease, transform .2s ease, box-shadow .25s ease;
-        }
-        .seg.on {
-          background: linear-gradient(90deg, var(--primary), var(--secondary));
-          box-shadow: 0 0 14px rgba(14,165,233,.35);
-          transform: translateY(-1px);
+        .skill-item:hover {
+          background: rgba(99,102,241,0.06);
+          border-color: rgba(99,102,241,0.12);
         }
 
-        /* Stats */
+        .skill-icon {
+          display: flex;
+          flex-shrink: 0;
+        }
+        .skill-icon :global(svg) {
+          width: 18px;
+          height: 18px;
+        }
+
+        .skill-label {
+          font-weight: 600;
+          font-size: 0.82rem;
+          color: var(--text);
+          white-space: nowrap;
+          letter-spacing: 0.1px;
+        }
+
         .stat-row {
-          display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;
+          display: flex;
+          gap: 16px;
+          flex-wrap: wrap;
+          justify-content: center;
         }
         .stat {
-          display: grid; gap: 4px; padding: 12px 16px;
-          border-radius: 14px; text-align: center;
-          background: rgba(17,25,40,.55);
-          border: 1px solid rgba(255,255,255,.12);
-          min-width: 180px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 4px;
+          padding: 20px 36px;
+          border-radius: var(--radius);
+          background: var(--surface);
+          border: 1px solid var(--glass-border);
+          min-width: 160px;
+          transition: border-color var(--transition);
         }
-        .stat .value { font-weight: 900; font-size: 1.4rem; }
-        .stat .label { color: var(--muted); font-weight: 700; font-size: .9rem; }
+        .stat:hover {
+          border-color: rgba(99,102,241,0.15);
+        }
+        .stat-value {
+          font-weight: 800;
+          font-size: 1.5rem;
+          background: linear-gradient(135deg, var(--primary-light), var(--secondary));
+          -webkit-background-clip: text;
+          background-clip: text;
+          color: transparent;
+        }
+        .stat-label {
+          color: var(--muted);
+          font-weight: 600;
+          font-size: 0.8rem;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+        }
+
+        @media (max-width: 768px) {
+          .categories-grid {
+            grid-template-columns: 1fr;
+          }
+        }
+
+        @media (max-width: 576px) {
+          .skill-item {
+            padding: 6px 10px;
+            gap: 6px;
+          }
+          .skill-icon :global(svg) {
+            width: 15px;
+            height: 15px;
+          }
+          .skill-label {
+            font-size: 0.75rem;
+          }
+          .stat {
+            min-width: 120px;
+            padding: 14px 20px;
+          }
+        }
       `}</style>
     </section>
   );
