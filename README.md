@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-  <a href="https://dhruvmohan-portfolio.vercel.app/">🌐 Live Site</a> •
+  <a href="https://portfolio-dhruvs-projects-2b3759ed.vercel.app/">🌐 Live Site</a> •
   <a href="#-featured-projects">Projects</a> •
   <a href="#-tech-stack">Tech Stack</a> •
   <a href="#-getting-started">Setup</a>
@@ -20,7 +20,7 @@
 ## 📸 Preview
 
 <p align="center">
-  <img src="src/assets/img/breve-preview.png" alt="Portfolio Preview" width="720" />
+  <img src="src/assets/img/PortFolio.png" alt="Portfolio Preview" width="720" />
 </p>
 
 ---
