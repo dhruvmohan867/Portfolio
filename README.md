@@ -204,6 +204,4 @@ This project is open source and available for personal use and learning.
 
 ---
 
-<p align="center">
-  Built with ❤️ by <strong>Dhruv Mohan Shukla</strong>
-</p>
+
