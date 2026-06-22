@@ -6,6 +6,10 @@ import certificateImg2 from "../assets/img/unnamed.jpg";
 import breveImg from "../assets/img/breve-preview.png";
 import aerodpiImg from "../assets/img/aerodpi-preview.png";
 import stockImg from "../assets/img/stock-predictor-preview.png";
+import skyfleetImg from "../assets/img/skyfleet-preview.png";
+import resumeforgeImg from "../assets/img/resumeforge-preview.png";
+import ecommerceImg from "../assets/img/ecommerce-preview.png";
+import etlEsgImg from "../assets/img/etl-esg-preview.png";
 import TrackVisibility from 'react-on-screen';
 import { FaAward, FaExternalLinkAlt, FaRegCalendarAlt } from 'react-icons/fa';
 import React from "react";
@@ -36,6 +40,38 @@ export const Projects = () => {
       github: "https://github.com/dhruvmohan867/stock-predictor",
       demo: "https://stock-predictor-five-opal.vercel.app/",
       tags: ["FastAPI", "React", "PostgreSQL", "scikit-learn", "ML"],
+    },
+    {
+      title: "SkyFleet — Flight Booking Platform",
+      description: "A modern full-stack flight booking platform built with Next.js, Supabase, and Zustand featuring real-time seat locking, secure booking workflows, and PWA offline support.",
+      imgUrl: skyfleetImg,
+      github: "https://github.com/dhruvmohan867/SkyFleet",
+      demo: "https://source-asia-delta.vercel.app/",
+      tags: ["Next.js", "Supabase", "Zustand", "PWA", "TypeScript"],
+    },
+    {
+      title: "ResumeForge AI — Resume Builder",
+      description: "A premium SaaS application designed to eliminate the friction of resume creation. Uses AI to generate, optimize, and tailor professional resumes with smart templates and real-time preview.",
+      imgUrl: resumeforgeImg,
+      github: "https://github.com/dhruvmohan867/ResumeForge-AI",
+      demo: "https://resumeforge-ai-7ia6mswtkahchmyt3orilz.streamlit.app/",
+      tags: ["Python", "Streamlit", "AI/ML", "NLP", "SaaS"],
+    },
+    {
+      title: "ShopNest — E-Commerce Platform",
+      description: "A modern e-commerce platform built with React.js, featuring authentication, product listings, cart management, and reusable UI components. Fully responsive and backend-ready.",
+      imgUrl: ecommerceImg,
+      github: "https://github.com/dhruvmohan867/Ecommerce-Website",
+      demo: "https://ecommerce-website-frontend3.onrender.com/",
+      tags: ["React", "Node.js", "Express", "MongoDB", "REST API"],
+    },
+    {
+      title: "BreatheESG — ETL Data Pipeline",
+      description: "A full-stack ESG ingestion platform with ETL pipelines, data normalization, suspicious record detection, and analyst review workflows for environmental sustainability metrics.",
+      imgUrl: etlEsgImg,
+      github: "https://github.com/dhruvmohan867/ETL",
+      demo: "https://breathe-esg-snowy.vercel.app/",
+      tags: ["React", "Node.js", "ETL", "PostgreSQL", "Data Pipeline"],
     },
   ];
 
@@ -76,7 +112,7 @@ export const Projects = () => {
                     <p className="section-label">PORTFOLIO</p>
                     <h2 className="brand-gradient" style={{ fontSize: 42 }}>Featured Projects</h2>
                     <p style={{ maxWidth: 640, margin: "12px auto 32px" }}>
-                      Selected work showcasing full-stack development, systems programming, and machine learning.
+                      Selected work showcasing full-stack development, systems programming, AI/ML, and data engineering.
                     </p>
                   </motion.div>
 
